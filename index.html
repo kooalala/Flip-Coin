@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Luck: Coin Flip</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #020617;
+        color: #f8fafc;
+        overflow: hidden; /* Prevent scrollbars from floating symbols */
+      }
+      .perspective {
+        perspective: 1000px;
+      }
+      .coin {
+        transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+      }
+      .coin-face {
+        backface-visibility: hidden;
+      }
+      .coin-back {
+        transform: rotateY(180deg);
+      }
+
+      /* Circular Background Animation Logic */
+      @keyframes circular-drift {
+        from {
+          transform: rotate(0deg) translateX(var(--drift-radius)) rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg) translateX(var(--drift-radius)) rotate(-360deg);
+        }
+      }
+
+      .floating-dollar {
+        position: absolute;
+        opacity: 0.15;
+        color: #10b981; /* Emerald-500 */
+        font-weight: 800;
+        pointer-events: none;
+        user-select: none;
+        filter: blur(1px);
+        animation: circular-drift var(--drift-duration) linear infinite;
+        animation-delay: var(--drift-delay);
+      }
+
+      /* Celebration Animation for Streak */
+      @keyframes streakPop {
+        0% { transform: scale(1); filter: brightness(1); }
+        50% { transform: scale(1.4); filter: brightness(1.5); text-shadow: 0 0 15px rgba(251, 191, 36, 0.8); }
+        100% { transform: scale(1); filter: brightness(1); }
+      }
+      .animate-streak {
+        animation: streakPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
