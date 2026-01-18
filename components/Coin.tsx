@@ -16,7 +16,7 @@ const Coin: React.FC<CoinProps> = ({ isFlipping, result }) => {
     : (result === 'TAILS' ? 180 : 0);
 
   return (
-    <div className="perspective w-48 h-48 mx-auto my-12 relative group cursor-pointer">
+    <div className="perspective w-48 h-48 mx-auto mt-4 mb-2 relative group cursor-pointer">
       <div 
         className="coin w-full h-full relative"
         style={{ transform: `rotateY(${rotation}deg)` }}
